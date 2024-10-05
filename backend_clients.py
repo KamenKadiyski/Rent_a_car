@@ -1,11 +1,14 @@
 def client_search(client_num):
+    missing = False
     for cl in client.keys():
         if client_num in client:
             print(f'Client with ID: {client_num}, {client[client_num]['name']} {client[client_num]['address']} is {client[client_num]['age']} old and status {client[client_num]['status']} driver')
             break
         else:
             print(f'Client not exist')
+            missing = True
             break
+    return missing
 
 def client_to_list(ids, name, address, age, status):
     client[ids] = {}
@@ -83,9 +86,8 @@ def add_client():
             except ValueError:
                 print("Please enter valid choice Y/N!")
 
-
-add_client()
-search_client = input(f'Insert client Id:')
-client_search(search_client)
-
-# test test
+# речник създаден само за целите на тестване на сорса
+client = {'123': {'name': 'Kamen', 'address': 'Varna', 'age': '45', 'status': 'Normal'}, '234': {'name': 'Vili', 'address': 'Maidstone', 'age': '34', 'status': 'Normal'}, '345': {'name': 'Ralitsa', 'address': 'Sofia', 'age': '32', 'status': 'Normal'}}
+#add_client()
+#search_client = input(f'Insert client Id:')
+#client_search(search_client)

@@ -1,3 +1,6 @@
+
+
+
 def car_search(car_num):
     for car in cars.keys():
         if car_num in cars:
@@ -33,7 +36,7 @@ def add_car():
         while car_found:
             car_id = input(f'Insert car ID:')
             car_found = car_exists(cars, car_id)
-            if car_found == False:
+            if not car_found:
                 break
             else:
                 print(f'Car already exists! Try again!')
@@ -74,6 +77,8 @@ def add_car():
                 print("Please enter valid choice Y/N!")
 
 
-add_car()
-search_car = input(f'Insert car Id:')
-car_search(search_car)
+#add_car()
+# речник създаден само за целите на тестване на сорса
+cars = {'123': {'brand': 'ALfa', 'model': 'Mito', 'price': '10', 'status': 'Available'}, '234': {'brand': 'Citroen', 'model': 'C5', 'price': '20', 'status': 'Available'}, '345': {'brand': 'Honda', 'model': 'Civic', 'price': '15', 'status': 'Available'}}
+#search_car = input(f'Insert car Id:')
+#car_search(search_car)
