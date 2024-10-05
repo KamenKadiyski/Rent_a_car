@@ -40,7 +40,16 @@ def add_client():
 
         client_name = input(f'Insert client name:')
         client_adderss = input(f'Insert client address:')
-        client_ages = input(f"Insert client's ages:")
+        while True:
+            try:
+                client_ages = input(f"Insert client's ages:")
+                if int(client_ages) >= 18:
+                    break
+
+                else:
+                    print("The customer is not old enough to rent a car!")
+            except ValueError:
+                print("Please enter valid choice!")
         client_status = 'Normal'
         while True:
             try:
