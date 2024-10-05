@@ -42,20 +42,36 @@ def add_car():
         car_model = input(f'Insert model:')
         rent_price = input(f'Insert rent price per day:')
         car_status = 'Available'
-        ans = input(f'Do You want to save the car\'s data? Y/N:').upper()
-        if ans == 'Y' or ans == 'YES':
-            add_to_list(car_id, car_brand, car_model, rent_price, car_status)
-            print(cars)
-        elif ans == 'N' or ans == 'NO':
-            car_id = car_brand = car_model = rent_price = car_status = ''
-            print(cars)
-            continue
-        ans1 = input(f'Next car? Y/N:').upper()
-        if ans1 == 'Y' or ans1 == 'YES':
-            car_id = car_brand = car_model = rent_price = car_status = ''
-            continue
-        elif ans1 == 'N' or ans1 == 'NO':
-            record = True
+        while True:
+            try:
+                ans = input(f'Do You want to save the car\'s data? Y/N:').upper()
+                if ans == 'Y' or ans == 'YES':
+                    add_to_list(car_id, car_brand, car_model, rent_price, car_status)
+                    print(cars)
+                    break
+                elif ans == 'N' or ans == 'NO':
+                    car_id = car_brand = car_model = rent_price = car_status = ''
+                    print(cars)
+                    break
+                else:
+                    print("Please enter valid choice Y/N!")
+            except ValueError:
+                print("Please enter valid choice Y/N!")
+        while True:
+            try:
+                ans1 = input(f'Next car? Y/N:').upper()
+                if ans1 == 'Y' or ans1 == 'YES':
+                    car_id = car_brand = car_model = rent_price = car_status = ''
+                    print(cars)
+                    break
+                elif ans1 == 'N' or ans1 == 'NO':
+                    record = True
+                    print(cars)
+                    break
+                else:
+                    print("Please enter valid choice Y/N!")
+            except ValueError:
+                print("Please enter valid choice Y/N!")
 
 
 add_car()
