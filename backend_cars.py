@@ -10,12 +10,14 @@ def car_search(car_num):
             print(f'car not exist')
             break
 
+
 def add_to_list(ids, brand, model, price, status):
     cars[ids] = {}
     cars[ids]['brand'] = brand
     cars[ids]['model'] = model
     cars[ids]['price'] = price
     cars[ids]['status'] = status
+
 
 def car_exists(cars_dict, key):
     if key in cars_dict:
@@ -26,7 +28,9 @@ def car_exists(cars_dict, key):
                 return True
     return False
 
+
 cars = {}
+
 
 def add_car():
     record = False
@@ -36,7 +40,7 @@ def add_car():
         while car_found:
             car_id = input(f'Insert car ID:')
             car_found = car_exists(cars, car_id)
-            if not car_found:
+            if car_found == False:
                 break
             else:
                 print(f'Car already exists! Try again!')
@@ -77,8 +81,9 @@ def add_car():
                 print("Please enter valid choice Y/N!")
 
 
+
 #add_car()
 # речник създаден само за целите на тестване на сорса
-cars = {'123': {'brand': 'ALfa', 'model': 'Mito', 'price': '10', 'status': 'Available'}, '234': {'brand': 'Citroen', 'model': 'C5', 'price': '20', 'status': 'Available'}, '345': {'brand': 'Honda', 'model': 'Civic', 'price': '15', 'status': 'Available'}}
+cars = {'123': {'brand': 'ALfa', 'model': 'Mito', 'price': '10', 'status': 'Available'}, '234': {'brand': 'Citroen', 'model': 'C5', 'price': '20', 'status': 'Available'}, '345': {'brand': 'Honda', 'model': 'Civic', 'price': '15', 'status': 'Rented'}, '654': {'brand': 'Toyota', 'model': 'Rav4', 'price': '30', 'status': 'Available'}}
 #search_car = input(f'Insert car Id:')
 #car_search(search_car)

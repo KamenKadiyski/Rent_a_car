@@ -1,14 +1,17 @@
 def client_search(client_num):
-    missing = False
+    #missing = False
     for cl in client.keys():
         if client_num in client:
-            print(f'Client with ID: {client_num}, {client[client_num]['name']} {client[client_num]['address']} is {client[client_num]['age']} old and status {client[client_num]['status']} driver')
+            missing = False
+            #return_msg = f'Client with ID: {client_num}, {client[client_num]['name']} {client[client_num]['address']} is {client[client_num]['age']} old and status {client[client_num]['status']} driver'
             break
         else:
-            print(f'Client not exist')
+            #return_msg = f'Client not exist. Please enter the customer details:'
             missing = True
             break
-    return missing
+    return  missing#return_msg
+
+
 
 def client_to_list(ids, name, address, age, status):
     client[ids] = {}
@@ -16,6 +19,7 @@ def client_to_list(ids, name, address, age, status):
     client[ids]['address'] = address
     client[ids]['age'] = age
     client[ids]['status'] = status
+
 
 def client_exists(client_dict, key):
     if key in client_dict:
@@ -26,21 +30,24 @@ def client_exists(client_dict, key):
                 return True
     return False
 
+
 client = {}
 
-def add_client():
+
+def add_client(client_id):
     record = False
-    client_id = ''
+    #client_id = ''
     while not record:
         client_found = True
         while client_found:
-            client_id = input(f'Insert client ID:')
+            #client_id = input(f'Insert client ID:')
             client_found = client_exists(client, client_id)
             if not client_found:
                 break
             else:
                 print(f'Client already exists! Try again!')
-
+                break
+        print(f'Client ID:{client_id}')
         client_name = input(f'Insert client name:')
         client_adderss = input(f'Insert client address:')
         while True:
@@ -86,22 +93,9 @@ def add_client():
             except ValueError:
                 print("Please enter valid choice Y/N!")
 
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
 
-add_client()
-search_client = input(f'Insert client Id:')
-client_search(search_client)
-=======
->>>>>>> Stashed changes
 # речник създаден само за целите на тестване на сорса
 client = {'123': {'name': 'Kamen', 'address': 'Varna', 'age': '45', 'status': 'Normal'}, '234': {'name': 'Vili', 'address': 'Maidstone', 'age': '34', 'status': 'Normal'}, '345': {'name': 'Ralitsa', 'address': 'Sofia', 'age': '32', 'status': 'Normal'}}
 #add_client()
 #search_client = input(f'Insert client Id:')
-<<<<<<< Updated upstream
 #client_search(search_client)
-=======
-#client_search(search_client)
->>>>>>> 317923cb923999c9958d5d08b07e454f888a9c39
->>>>>>> Stashed changes
