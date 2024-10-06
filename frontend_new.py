@@ -1,4 +1,4 @@
-from backend_cars import cars, add_car
+from backend_cars import add_car
 from rent_a_car import list_cars, rent_a_car
 
 # frontend.py, който ти написа съм го прекръстил на
