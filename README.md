@@ -35,7 +35,7 @@ It includes the following panels and their features:
 
 QA guidelines:
 
-To check whether the age of the tenant is over 18 years, when entering data for a new customer.
+To check whether the age of the customer is over 18 years, when entering data for a new customer.
 
 Don't give an opportunity to rent a car that has already been rented out
 
