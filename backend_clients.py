@@ -86,8 +86,22 @@ def add_client():
             except ValueError:
                 print("Please enter valid choice Y/N!")
 
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+
+add_client()
+search_client = input(f'Insert client Id:')
+client_search(search_client)
+=======
+>>>>>>> Stashed changes
 # речник създаден само за целите на тестване на сорса
 client = {'123': {'name': 'Kamen', 'address': 'Varna', 'age': '45', 'status': 'Normal'}, '234': {'name': 'Vili', 'address': 'Maidstone', 'age': '34', 'status': 'Normal'}, '345': {'name': 'Ralitsa', 'address': 'Sofia', 'age': '32', 'status': 'Normal'}}
 #add_client()
 #search_client = input(f'Insert client Id:')
+<<<<<<< Updated upstream
 #client_search(search_client)
+=======
+#client_search(search_client)
+>>>>>>> 317923cb923999c9958d5d08b07e454f888a9c39
+>>>>>>> Stashed changes
