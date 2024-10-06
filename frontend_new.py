@@ -39,7 +39,7 @@ def exit_menu():
     return None
 
 
-def display_cars(cars):
+def display_cars():
     print("\nAvailable Cars:")
     list_cars()
     #for car in cars:
@@ -47,12 +47,12 @@ def display_cars(cars):
     #    print(f"ID: {car['id']} - {car['brand']} {car['model']} - ${car['rental_price']}/day - {status}")
 
 
-def client_panel(cars):
+def client_panel():
     while True:
         try:
             option = main_menu_client()
             if option == "1":
-                display_cars(cars)
+                display_cars()
             elif option == "2":
                 print("Renting a car functionality.")
                 rent_a_car()
@@ -67,7 +67,7 @@ def client_panel(cars):
             print("Invalid option, please try again.")
 
 
-def admin_panel(cars):
+def admin_panel():
     while True:
         try:
             option = main_menu_admin()
@@ -100,9 +100,9 @@ def main():
             panel_choice = main_menu()
 
             if panel_choice == "admin":
-                admin_panel(cars)
+                admin_panel()
             elif panel_choice == "client":
-                client_panel(cars)
+                client_panel()
             elif panel_choice == "exit":
                 exit_menu()
                 break
