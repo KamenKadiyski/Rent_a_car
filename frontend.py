@@ -36,36 +36,42 @@ def display_cars(cars):
 
 def client_panel(cars):
     while True:
-        option = main_menu_client()
-        if option == "1":
-            display_cars(cars)
-        elif option == "2":
-            print("Renting a car functionality.")
+        try:
+            option = main_menu_client()
+            if option == "1":
+                display_cars(cars)
+            elif option == "2":
+                print("Renting a car functionality.")
 
-        elif option == "3":
-            print("Returning a car functionality.")
+            elif option == "3":
+                print("Returning a car functionality.")
 
-        elif option == "4":
-            break
-        else:
+            elif option == "4":
+                break
+            else:
+                print("Invalid option, please try again.")
+        except ValueError:
             print("Invalid option, please try again.")
 
 
 def admin_panel(cars):
     while True:
-        option = main_menu_admin()
-        if option == "1":
-            print("Enter new car functionality.")
+        try:
+            option = main_menu_admin()
+            if option == "1":
+                print("Enter new car functionality.")
 
-        elif option == "2":
-            print("Changing data for existing car functionality.")
+            elif option == "2":
+                print("Changing data for existing car functionality.")
 
-        elif option == "3":
-            print("Removing a car functionality.")
+            elif option == "3":
+                print("Removing a car functionality.")
 
-        elif option == "4":
-            break
-        else:
+            elif option == "4":
+                break
+            else:
+                print("Invalid option, please try again.")
+        except ValueError:
             print("Invalid option, please try again.")
 
 
@@ -76,16 +82,19 @@ def main():
     ]
 
     while True:
-        panel_choice = main_menu()
+        try:
+            panel_choice = main_menu()
 
-        if panel_choice == "admin":
-            admin_panel(cars)
-        elif panel_choice == "client":
-            client_panel(cars)
-        elif panel_choice == "exit":
-            exit_menu()
-            break
-        else:
+            if panel_choice == "admin":
+                admin_panel(cars)
+            elif panel_choice == "client":
+                client_panel(cars)
+            elif panel_choice == "exit":
+                exit_menu()
+                break
+            else:
+                print("Wrong input! Please select an option again.")
+        except ValueError:
             print("Wrong input! Please select an option again.")
 
 
