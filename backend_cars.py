@@ -36,7 +36,7 @@ def add_car():
         while car_found:
             car_id = input(f'Insert car ID:')
             car_found = car_exists(cars, car_id)
-            if car_found == False:
+            if not car_found:
                 break
             else:
                 print(f'Car already exists! Try again!')
@@ -108,7 +108,7 @@ def car_detail_change(car_changes,car_id):
             try:
                 ans1 = input(f'Are you sure you want to change the rental price? Y/N:').upper()
                 if ans1 == 'Y' or ans1 == 'YES':
-                    cars[car_id]['price'] = new_price
+                    cars[car_id]['price'] = str(new_price)
                     # print(cars[car_id]) - #-да се активира ако има грешка за тестови данни
                     break
                 elif ans1 == 'N' or ans1 == 'NO':
