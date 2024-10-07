@@ -1,19 +1,18 @@
 from backend_cars import add_car
 from rent_a_car import list_cars, rent_a_car
 
-# frontend.py, който ти написа съм го прекръстил на
-# frontend_old.py и съм добавил нов, в който са нещата
-# които съм добавил аз към това, което ти си написла
-#Разгледай ги и двата. Тествай как върви frontend_new.py,
-#разгледай какво и как се случва.
-#Ако забележиш нещо, добави или кажи да изчистя като грешка
-
-
+#admin_panel option 2 and 3 : тук съм добавила опции за премахване и промяна, да се свържат с backend
 
 def main_menu():
-    print("Welcome to RentACar Turtle Team!")
-    print("Do you want to go into the Admin panel or in the Client panel?")
-    return input("Please choose an option (Admin, Client or Exit): ").lower()
+    try:
+        print("Welcome to RentACar Turtle Team!")
+        print("Which menu do you want to enter?")
+        print("1. Admin panel")
+        print("2. Client panel")
+        print("3. Exit")
+        return input("Please choose an option (1-3): ")
+    except ValueError:
+        print("Invalid option, please try again.")
 
 
 def main_menu_client():
@@ -42,9 +41,6 @@ def exit_menu():
 def display_cars():
     print("\nAvailable Cars:")
     list_cars()
-    #for car in cars:
-    #    status = "Available" if car["available"] else "Rented"
-    #    print(f"ID: {car['id']} - {car['brand']} {car['model']} - ${car['rental_price']}/day - {status}")
 
 
 def client_panel():
@@ -58,7 +54,8 @@ def client_panel():
                 rent_a_car()
             elif option == "3":
                 print("Returning a car functionality.")
-
+                return_car_id = input("Please enter car ID: ")
+                # to add functionality here
             elif option == "4":
                 break
             else:
@@ -73,14 +70,36 @@ def admin_panel():
             option = main_menu_admin()
             if option == "1":
                 print("Enter new car functionality.")
-                add_car()
+                add_car() # to review it
 
             elif option == "2":
                 print("Changing data for existing car functionality.")
+                car_id_to_be_changed = map(int(input("Please select for which car ID you want to make changes: ")))
+                print("What do you want to change?")
+                print("1. Brand")
+                print("2. Model")
+                print("3. Price")
+                print("4. Status")
+                car_changes = input("Please select option from the list above (1-4)")
+                try:
+                    if car_changes == "1":
+                        pass
+                    elif car_changes == "2":
+                        pass
+                    elif car_changes == "3":
+                        pass
+                    elif car_changes == "4":
+                        pass
+                except ValueError:
+                    print("Invalid option, please try again.")
+
+                # to complete
 
             elif option == "3":
                 print("Removing a car functionality.")
+                car_id_to_be_removed = map(int(input("Please select which car ID you want to remove: ")))
 
+                # to complete
             elif option == "4":
                 break
             else:
@@ -90,20 +109,16 @@ def admin_panel():
 
 
 def main():
-   # cars = [
-   #     {"id": 1, "brand": "Toyota", "model": "Corolla", "rental_price": 50, "available": True},
-   #     {"id": 2, "brand": "Ford", "model": "Fiesta", "rental_price": 45, "available": False},
-    #]
 
     while True:
         try:
             panel_choice = main_menu()
 
-            if panel_choice == "admin":
+            if panel_choice == "1":
                 admin_panel()
-            elif panel_choice == "client":
+            elif panel_choice == "2":
                 client_panel()
-            elif panel_choice == "exit":
+            elif panel_choice == "3":
                 exit_menu()
                 break
             else:

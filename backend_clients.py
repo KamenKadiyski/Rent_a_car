@@ -9,7 +9,7 @@ def client_search(client_num):
             #return_msg = f'Client not exist. Please enter the customer details:'
             missing = True
             break
-    return  missing#return_msg
+    return missing #return_msg
 
 
 

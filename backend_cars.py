@@ -4,7 +4,7 @@
 def car_search(car_num):
     for car in cars.keys():
         if car_num in cars:
-            print(f'car with ID: {car_num}, {cars[car_num]['brand']} {cars[car_num]['model']} for {cars[car_num]['price']}lv. per day is {cars[car_num]['status']}')
+            print(f'car with ID: {car_num}, {cars[car_num]["brand"]} {cars[car_num]["model"]} for {cars[car_num]["price"]}lv. per day is {cars[car_num]["status"]}')
             break
         else:
             print(f'car not exist')
