@@ -4,12 +4,11 @@
 def car_search(car_num):
     for car in cars.keys():
         if car_num in cars:
-            print(f'car with ID: {car_num}, {cars[car_num]["brand"]} {cars[car_num]["model"]} for {cars[car_num]["price"]}lv. per day is {cars[car_num]["status"]}')
+            print(f'car with ID: {car_num}, {cars[car_num]['brand']} {cars[car_num]['model']} for BGN{cars[car_num]['price']} per day is {cars[car_num]['status']}')
             break
         else:
-            print(f'car not exist')
+            print(f'Car with {car_num} not exists!')
             break
-
 
 def add_to_list(ids, brand, model, price, status):
     cars[ids] = {}
@@ -17,7 +16,6 @@ def add_to_list(ids, brand, model, price, status):
     cars[ids]['model'] = model
     cars[ids]['price'] = price
     cars[ids]['status'] = status
-
 
 def car_exists(cars_dict, key):
     if key in cars_dict:
@@ -28,9 +26,7 @@ def car_exists(cars_dict, key):
                 return True
     return False
 
-
 cars = {}
-
 
 def add_car():
     record = False
@@ -54,11 +50,11 @@ def add_car():
                 ans = input(f'Do You want to save the car\'s data? Y/N:').upper()
                 if ans == 'Y' or ans == 'YES':
                     add_to_list(car_id, car_brand, car_model, rent_price, car_status)
-                    print(cars)
+                    # print(cars) #-да се активира ако има грешка за тестови данни
                     break
                 elif ans == 'N' or ans == 'NO':
                     car_id = car_brand = car_model = rent_price = car_status = ''
-                    print(cars)
+                    # print(cars) #-да се активира ако има грешка за тестови данни
                     break
                 else:
                     print("Please enter valid choice Y/N!")
@@ -69,17 +65,80 @@ def add_car():
                 ans1 = input(f'Next car? Y/N:').upper()
                 if ans1 == 'Y' or ans1 == 'YES':
                     car_id = car_brand = car_model = rent_price = car_status = ''
-                    print(cars)
+                    # print(cars) #-да се активира ако има грешка за тестови данни
                     break
                 elif ans1 == 'N' or ans1 == 'NO':
                     record = True
-                    print(cars)
+                    # print(cars) #-да се активира ако има грешка за тестови данни
                     break
                 else:
                     print("Please enter valid choice Y/N!")
             except ValueError:
                 print("Please enter valid choice Y/N!")
 
+def car_del (car_id):
+    #car_search(car_id)
+    if cars[car_id]["status"] == "Rented":
+        print(f"The car with ID {car_id} is rented out! You cannot delete the car from the database!")
+    else:
+        while True:
+            try:
+                ans1 = input(f'Are you sure you want to delete this car? Y/N:').upper()
+                if ans1 == 'Y' or ans1 == 'YES':
+                    del cars[car_id]
+                    #print(cars) #-да се активира ако има грешка за тестови данни
+                    break
+                elif ans1 == 'N' or ans1 == 'NO':
+                    # print(cars) #-да се активира ако има грешка за тестови данни
+                    break
+                else:
+                    print("Please enter valid choice Y/N!")
+            except ValueError:
+                print("Please enter valid choice Y/N!")
+
+def car_detail_change(car_changes,car_id):
+    if car_changes == '1':
+        while True:
+            try:
+                new_price = float(input(f'Please enter the new rental price of the car:'))
+                break
+            except ValueError:
+                print("Please enter valid choice Y/N!")
+        while True:
+            try:
+                ans1 = input(f'Are you sure you want to change the rental price? Y/N:').upper()
+                if ans1 == 'Y' or ans1 == 'YES':
+                    cars[car_id]['price'] = new_price
+                    # print(cars[car_id]) - #-да се активира ако има грешка за тестови данни
+                    break
+                elif ans1 == 'N' or ans1 == 'NO':
+                    # print(cars[car_id]) #-да се активира ако има грешка за тестови данни
+                    break
+                else:
+                    print("Please enter valid choice Y/N!")
+            except ValueError:
+                print("Please enter valid choice Y/N!")
+
+
+
+    elif car_changes == '2':
+        if cars[car_id]["status"] == "Rented":
+            print(f"The car with ID {car_id} is rented out! You cannot scrap the car!")
+        else:
+            while True:
+                try:
+                    ans1 = input(f'Are you sure you want to scrap this car? Y/N:').upper()
+                    if ans1 == 'Y' or ans1 == 'YES':
+                        cars[car_id]['status'] = 'Scrapped'
+                        #print(cars[car_id]) #-да се активира ако има грешка за тестови данни
+                        break
+                    elif ans1 == 'N' or ans1 == 'NO':
+                        #print(cars[car_id]) #- да се активира ако има грешка за тестови данни
+                        break
+                    else:
+                        print("Please enter valid choice Y/N!")
+                except ValueError:
+                    print("Please enter valid choice Y/N!")
 
 
 #add_car()

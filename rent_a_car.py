@@ -1,3 +1,5 @@
+from datetime import date
+
 from backend_clients import client_search, add_client, client
 from backend_cars import cars, add_car, car_search
 
@@ -30,7 +32,7 @@ def list_cars ():
 
                     if isinstance(value, dict):
                         print(
-                            f'car with ID: {key}, {cars[key]["brand"]} {cars[key]["model"]} for {cars[key]["price"]}lv. per day is {cars[key]["status"]}')
+                            f'car with ID: {key}, {cars[key]['brand']} {cars[key]['model']} for {cars[key]['price']}lv. per day is {cars[key]['status']}')
                     else:
                         print(f'  {value}')
                 break
@@ -43,7 +45,7 @@ def list_cars ():
                             ans1 = input(f'Do you want to rent other car? Y/N:').upper()
                             if ans1 == 'Y' or ans1 == 'YES':
 
-                                print(cars)
+                                #print(cars) #-да се активира ако има грешка за тестови данни
                                 break
                             elif ans1 == 'N' or ans1 == 'NO':
                                 record = True
@@ -80,7 +82,7 @@ def rent_a_car ():
                 add_client(customer_who_rent)
                 break
             else:
-                print(f'Client with ID: {customer_who_rent}, {client[customer_who_rent]["name"]} {client[customer_who_rent]["address"]} is {client[customer_who_rent]["age"]} old and status {client[customer_who_rent]["status"]} driver')
+                print(f'Client with ID: {customer_who_rent}, {client[customer_who_rent]['name']} {client[customer_who_rent]['address']} is {client[customer_who_rent]['age']} old and status {client[customer_who_rent]['status']} driver')
                 break
         except ValueError:
             print(f"Please enter valid ID!")
@@ -106,7 +108,7 @@ def rent_a_car ():
         except ValueError:
             print(f'Please enter valid choice Y/N!')
     if ins_confirm == 'Y':
-        car_deposit = car_deposit / 2
+        car_deposit = car_deposit  / 2
     while True:
         try:
             out_confirm = input(
@@ -121,7 +123,7 @@ def rent_a_car ():
                 print(f'Please enter valid choice Y/N!')
         except ValueError:
             print(f'Please enter valid choice Y/N!')
-    trans_id = car_to_rent + ':' + customer_who_rent
+    trans_id = car_to_rent + ':' + customer_who_rent + ':'+ str(date.today)
     while True:
         try:
             outside_eu = input(f'Is your driving license issued by a non-EU country? Y/N').upper()
@@ -152,12 +154,12 @@ def rent_a_car ():
                 transaction_status = 'Active'
                 transaction_to_list(trans_id, days_to_rent, car_deposit, rent_to_pay, transaction_status)
                 cars[car_to_rent]['status'] = 'Rented'
-                print(transactions)
-                print((cars[car_to_rent]))
+                # print(transactions) #-да се активира ако има грешка за тестови данни
+                # print((cars[car_to_rent])) #-да се активира ако има грешка за тестови данни
                 break
             elif ans == 'N' or ans == 'NO':
                 trans_id = days_to_rent = car_deposit = rent_to_pay = transaction_status = ''
-                print(transactions)
+                #print(transactions) #-да се активира ако има грешка за тестови данни
                 break
             else:
                 print(f'Please enter valid choice Y/N!')

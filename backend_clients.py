@@ -9,9 +9,7 @@ def client_search(client_num):
             #return_msg = f'Client not exist. Please enter the customer details:'
             missing = True
             break
-    return missing #return_msg
-
-
+    return  missing#return_msg
 
 def client_to_list(ids, name, address, age, status):
     client[ids] = {}
@@ -19,7 +17,6 @@ def client_to_list(ids, name, address, age, status):
     client[ids]['address'] = address
     client[ids]['age'] = age
     client[ids]['status'] = status
-
 
 def client_exists(client_dict, key):
     if key in client_dict:
@@ -30,9 +27,7 @@ def client_exists(client_dict, key):
                 return True
     return False
 
-
 client = {}
-
 
 def add_client(client_id):
     record = False
@@ -66,11 +61,11 @@ def add_client(client_id):
                 ans = input(f'Do You want to save the client\'s data? Y/N:').upper()
                 if ans == 'Y' or ans == 'YES':
                     client_to_list(client_id, client_name, client_adderss, client_ages, client_status)
-                    print(client)
+                    # print(client) #-да се активира ако има грешка за тестови данни
                     break
                 elif ans == 'N' or ans == 'NO':
                     client_id = client_name = client_adderss = client_ages = client_status = ''
-                    print(client)
+                    #print(client) #-да се активира ако има грешка за тестови данни
                     break
                 else:
                     print("Please enter valid choice Y/N:")
@@ -82,17 +77,16 @@ def add_client(client_id):
                 ans1 = input(f'Next client? Y/N:').upper()
                 if ans1 == 'Y' or ans1 == 'YES':
                     client_id = client_name = client_adderss = client_ages = client_status = ''
-                    print(client)
+                    #print(client) #-да се активира ако има грешка за тестови данни
                     break
                 elif ans1 == 'N' or ans1 == 'NO':
                     record = True
-                    print(client)
+                    #print(client) #-да се активира ако има грешка за тестови данни
                     break
                 else:
                     print("Please enter valid choice Y/N!")
             except ValueError:
                 print("Please enter valid choice Y/N!")
-
 
 # речник създаден само за целите на тестване на сорса
 client = {'123': {'name': 'Kamen', 'address': 'Varna', 'age': '45', 'status': 'Normal'}, '234': {'name': 'Vili', 'address': 'Maidstone', 'age': '34', 'status': 'Normal'}, '345': {'name': 'Ralitsa', 'address': 'Sofia', 'age': '32', 'status': 'Normal'}}
