@@ -1,3 +1,8 @@
+import json
+
+with open("clients_data.json", "r") as file:
+    client = json.load(file)
+
 def client_search(client_num):
     #missing = False
     for cl in client.keys():
@@ -27,7 +32,7 @@ def client_exists(client_dict, key):
                 return True
     return False
 
-client = {}
+#client = {}
 
 def add_client(client_id):
     record = False
@@ -89,7 +94,7 @@ def add_client(client_id):
                 print("Please enter valid choice Y/N!")
 
 # речник създаден само за целите на тестване на сорса
-client = {'123': {'name': 'Kamen', 'address': 'Varna', 'age': '45', 'status': 'Normal'}, '234': {'name': 'Vili', 'address': 'Maidstone', 'age': '34', 'status': 'Normal'}, '345': {'name': 'Ralitsa', 'address': 'Sofia', 'age': '32', 'status': 'Normal'}}
+#client = {'123': {'name': 'Kamen', 'address': 'Varna', 'age': '45', 'status': 'Normal'}, '234': {'name': 'Vili', 'address': 'Maidstone', 'age': '34', 'status': 'Normal'}, '345': {'name': 'Ralitsa', 'address': 'Sofia', 'age': '32', 'status': 'Normal'}}
 #add_client()
 #search_client = input(f'Insert client Id:')
 #client_search(search_client)

@@ -1,5 +1,9 @@
-from backend_cars import add_car, car_del, car_detail_change
-from rent_a_car import list_cars, rent_a_car
+import json
+
+from backend_clients import client
+from backend_cars import add_car, car_del, car_detail_change, cars
+from rent_a_car import list_cars, rent_a_car, transactions
+
 
 #admin_panel option 2 and 3 : тук съм добавила опции за премахване и промяна, да се свържат с backend
 
@@ -35,6 +39,12 @@ def main_menu_admin():
 
 def exit_menu():
     print("Thank you for using RentACar Turtle Team! \nHave a great day!")
+    with open("rented_cars.json", "w") as file:
+        json.dump(transactions, file, indent=4)
+    with open("cars_data.json", "w") as file:
+        json.dump(cars, file, indent=4)
+    with open("clients_data.json", "w") as file:
+        json.dump(client, file, indent=4)
     return None
 
 
@@ -106,6 +116,9 @@ def admin_panel():
 
 
 def main():
+
+
+
 
     while True:
         try:

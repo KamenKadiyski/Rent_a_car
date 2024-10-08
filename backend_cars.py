@@ -1,5 +1,6 @@
-
-
+import json
+with open("cars_data.json", "r") as file:
+    cars = json.load(file)
 
 def car_search(car_num):
     for car in cars.keys():
@@ -7,7 +8,7 @@ def car_search(car_num):
             print(f'car with ID: {car_num}, {cars[car_num]['brand']} {cars[car_num]['model']} for BGN{cars[car_num]['price']} per day is {cars[car_num]['status']}')
             break
         else:
-            print(f'Car with {car_num} not exists!')
+            print(f'Car with ID {car_num} not exists!')
             break
 
 def add_to_list(ids, brand, model, price, status):
@@ -26,7 +27,7 @@ def car_exists(cars_dict, key):
                 return True
     return False
 
-cars = {}
+#cars = {}
 
 def add_car():
     record = False
@@ -36,7 +37,7 @@ def add_car():
         while car_found:
             car_id = input(f'Insert car ID:')
             car_found = car_exists(cars, car_id)
-            if not car_found:
+            if car_found == False:
                 break
             else:
                 print(f'Car already exists! Try again!')
@@ -143,6 +144,6 @@ def car_detail_change(car_changes,car_id):
 
 #add_car()
 # речник създаден само за целите на тестване на сорса
-cars = {'123': {'brand': 'ALfa', 'model': 'Mito', 'price': '10', 'status': 'Available'}, '234': {'brand': 'Citroen', 'model': 'C5', 'price': '20', 'status': 'Available'}, '345': {'brand': 'Honda', 'model': 'Civic', 'price': '15', 'status': 'Rented'}, '654': {'brand': 'Toyota', 'model': 'Rav4', 'price': '30', 'status': 'Available'}}
+#cars = {'123': {'brand': 'ALfa', 'model': 'Mito', 'price': '10', 'status': 'Available'}, '234': {'brand': 'Citroen', 'model': 'C5', 'price': '20', 'status': 'Available'}, '345': {'brand': 'Honda', 'model': 'Civic', 'price': '15', 'status': 'Rented'}, '654': {'brand': 'Toyota', 'model': 'Rav4', 'price': '30', 'status': 'Available'}}
 #search_car = input(f'Insert car Id:')
 #car_search(search_car)

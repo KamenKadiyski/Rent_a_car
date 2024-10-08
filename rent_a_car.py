@@ -1,11 +1,16 @@
+import json
 from datetime import date
 
+with open("rented_cars.json", "r") as file:
+    transactions = json.load(file)
 from backend_clients import client_search, add_client, client
 from backend_cars import cars, add_car, car_search
 
 
-def transaction_to_list(ids, days, deposit, paid, status):
+def transaction_to_list(ids, customer, dnes, days, deposit, paid, status):
     transactions[ids] = {}
+    transactions[ids]['client'] = customer
+    transactions[ids]['date'] = dnes
     transactions[ids]['days'] = days
     transactions[ids]['deposit'] = deposit
     transactions[ids]['paid'] = paid
@@ -16,7 +21,7 @@ def transaction_to_list(ids, days, deposit, paid, status):
 car_deposit = 800
 car_to_rent = ''
 customer_who_rent = ''
-transactions = {}
+#transactions = {}
 
 
 if len(cars) == 0:
@@ -123,7 +128,7 @@ def rent_a_car ():
                 print(f'Please enter valid choice Y/N!')
         except ValueError:
             print(f'Please enter valid choice Y/N!')
-    trans_id = car_to_rent + ':' + customer_who_rent + ':'+ str(date.today)
+    trans_id = car_to_rent
     while True:
         try:
             outside_eu = input(f'Is your driving license issued by a non-EU country? Y/N').upper()
@@ -152,10 +157,11 @@ def rent_a_car ():
             ans = input(f'Do You want to save the transaction\'s data? Y/N:').upper()
             if ans == 'Y' or ans == 'YES':
                 transaction_status = 'Active'
-                transaction_to_list(trans_id, days_to_rent, car_deposit, rent_to_pay, transaction_status)
+                day_of_rent = str(date.today())
+                transaction_to_list(trans_id, customer_who_rent,day_of_rent, days_to_rent, car_deposit, rent_to_pay, transaction_status)
                 cars[car_to_rent]['status'] = 'Rented'
-                # print(transactions) #-да се активира ако има грешка за тестови данни
-                # print((cars[car_to_rent])) #-да се активира ако има грешка за тестови данни
+                print(transactions) #-да се активира ако има грешка за тестови данни
+                print((cars[car_to_rent])) #-да се активира ако има грешка за тестови данни
                 break
             elif ans == 'N' or ans == 'NO':
                 trans_id = days_to_rent = car_deposit = rent_to_pay = transaction_status = ''
