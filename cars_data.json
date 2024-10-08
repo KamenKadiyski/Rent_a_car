@@ -1,0 +1,32 @@
+{
+    "123": {
+        "brand": "ALfa",
+        "model": "Mito",
+        "price": "15.55",
+        "status": "Available"
+    },
+    "234": {
+        "brand": "Citroen",
+        "model": "C5",
+        "price": "20",
+        "status": "Available"
+    },
+    "345": {
+        "brand": "Honda",
+        "model": "Civic",
+        "price": "15",
+        "status": "Rented"
+    },
+    "654": {
+        "brand": "Toyota",
+        "model": "Rav4",
+        "price": "30",
+        "status": "Available"
+    },
+    "789": {
+        "brand": "Honda",
+        "model": "CR-V",
+        "price": "55.55",
+        "status": "Rented"
+    }
+}

@@ -1,0 +1,20 @@
+{
+    "123": {
+        "name": "Kamen",
+        "address": "Varna",
+        "age": "45",
+        "status": "Normal"
+    },
+    "234": {
+        "name": "Vili",
+        "address": "Maidstone",
+        "age": "34",
+        "status": "Normal"
+    },
+    "345": {
+        "name": "Ralitsa",
+        "address": "Sofia",
+        "age": "32",
+        "status": "Normal"
+    }
+}
