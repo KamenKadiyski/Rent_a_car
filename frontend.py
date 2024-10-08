@@ -2,7 +2,7 @@ import json
 
 from backend_clients import client
 from backend_cars import add_car, car_del, car_detail_change, cars
-from rent_a_car import list_cars, rent_a_car, transactions
+from rent_a_car import (list_cars, rent_a_car, transactions)
 
 
 #admin_panel option 2 and 3 : тук съм добавила опции за премахване и промяна, да се свържат с backend

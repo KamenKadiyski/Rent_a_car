@@ -160,11 +160,14 @@ def rent_a_car ():
                 day_of_rent = str(date.today())
                 transaction_to_list(trans_id, customer_who_rent,day_of_rent, days_to_rent, car_deposit, rent_to_pay, transaction_status)
                 cars[car_to_rent]['status'] = 'Rented'
-                print(transactions) #-да се активира ако има грешка за тестови данни
-                print((cars[car_to_rent])) #-да се активира ако има грешка за тестови данни
+                trans_id = days_to_rent = car_deposit = rent_to_pay = transaction_status = ''
+                customer_who_rent = car_to_rent = day_of_rent = ''
+                #print(transactions) #-да се активира ако има грешка за тестови данни
+                #print((cars[car_to_rent])) #-да се активира ако има грешка за тестови данни
                 break
             elif ans == 'N' or ans == 'NO':
                 trans_id = days_to_rent = car_deposit = rent_to_pay = transaction_status = ''
+                customer_who_rent = car_to_rent = day_of_rent = ''
                 #print(transactions) #-да се активира ако има грешка за тестови данни
                 break
             else:
