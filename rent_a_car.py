@@ -174,3 +174,105 @@ def rent_a_car ():
                 print(f'Please enter valid choice Y/N!')
         except ValueError:
             print(f'Please enter valid choice Y/N!')
+
+
+
+def return_car():
+    while True:
+        try:
+            car_to_return = input("Please enter the ID of the car you are returning: ")
+            if cars[car_to_return]['status'] != 'Rented' and transactions[car_to_return]['status'] != "Active":
+                print(f'The car is not rented! Try another car! ')
+                continue
+            else:
+                car_search(car_to_return)
+                break
+        except ValueError:
+            print(f"Please enter valid ID!")
+
+    return_price = 0
+
+    while True:
+        try:
+            same_point = input(f"Is the car returned to the same location from which it was rented? Y/N: ").upper()
+            if same_point == 'Y' or same_point == 'YES':
+                break
+            elif same_point == 'N' or same_point == 'NO':
+                print(f"A fee of BGN 100 will be charged for a one-way rental. ")
+                return_price += 100
+                break
+            else:
+                print(f'Please enter valid choice Y/N! ')
+        except ValueError:
+            print(f'Please enter valid choice Y/N! ')
+
+    while True:
+        try:
+            full_tank = input(f"Is the vehicle returned with a full tank/battery? Y/N: ").upper()
+            if full_tank == 'Y' or full_tank == 'YES':
+                break
+            elif full_tank == 'N' or full_tank == 'NO':
+                while True:
+                    try:
+                        electric_car = input(f"Is the car electric? Y/N: ").upper()
+                        if electric_car == 'Y' or electric_car == 'YES':
+                            print(
+                                f"You will be charged an administrative fee of BGN 30 plus\nBGN 1 for each kWh required to fully charge the battery. ")
+                            kwh_needed = int(input(f"Please enter how many kWh are needed to charge the battery: "))
+                            return_price += kwh_needed
+                            break
+                        elif electric_car == 'N' or electric_car == 'NO':
+                            print(
+                                f"You will be charged an administrative fee of BGN 30 plus\nBGN 2,90 for each liter of fuel required to fill the tank. ")
+                            fuel_needed = int(input(f"Please enter how many liters of fuel are required: "))
+                            return_price += fuel_needed * 2.9
+                            return_price += 30
+                            break
+                        else:
+                            print(f'Please enter valid choice Y/N!')
+                    except ValueError:
+                        print(f'Please enter valid choice Y/N!')
+                break
+            else:
+                print(f'Please enter valid choice Y/N!')
+        except ValueError:
+            print(f'Please enter valid choice Y/N!')
+
+    while True:
+        try:
+            damages = input(f"Is there damage to the vehicle, due to the customer's fault? Y/N: ").upper()
+            if damages == 'Y' or damages == 'YES':
+                print(f"Since there is damage to the car through your fault, the deposit will not be refunded!")
+                cust_id = transactions[car_to_return]["client"]
+                customer_stat = 'Risky'
+                break
+            elif damages == 'N' or damages == 'NO':
+                break
+            else:
+                print(f'Please enter valid choice Y/N!')
+        except ValueError:
+            print(f'Please enter valid choice Y/N!')
+
+    if return_price != 0:
+        print(
+            f'You owe BGN {return_price:.2f} for non-compliance with the terms of the contract and/or damage to the car')
+
+    while True:
+        try:
+            ans = input(f'Do You want to save the transaction\'s data? Y/N: ').upper()
+            if ans == 'Y' or ans == 'YES':
+                cars[car_to_return]['status'] = 'Available'
+                if damages == 'Y' or damages == 'YES':
+                    client[cust_id]["status"] = customer_stat
+                transactions[car_to_return]["status"] = 'Closed'
+                print(transactions[car_to_return])  # -да се активира ако има грешка за тестови данни
+                print((cars[car_to_return]))# -да се активира ако има грешка за тестови данни
+                print(client[cust_id])
+                break
+            elif ans == 'N' or ans == 'NO':
+
+                break
+            else:
+                print(f'Please enter valid choice Y/N!')
+        except ValueError:
+            print(f'Please enter valid choice Y/N!')
