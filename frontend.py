@@ -64,8 +64,8 @@ def client_panel():
                 rent_a_car()
             elif option == "3":
                 print("Returning a car functionality.")
-                #return_car_id = input("Please enter car ID: ")
-                return_car()
+                return_car_id = input("Please enter car ID: ")
+                return_car(return_car_id)
                 # to add functionality here
             elif option == "4":
                 break
