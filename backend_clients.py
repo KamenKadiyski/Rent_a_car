@@ -4,7 +4,7 @@ with open("clients_data.json", "r") as file:
     client = json.load(file)
 
 def client_search(client_num):
-    #missing = False
+    missing = False
     for cl in client.keys():
         if client_num in client:
             missing = False

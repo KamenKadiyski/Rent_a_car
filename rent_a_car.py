@@ -24,8 +24,8 @@ customer_who_rent = ''
 #transactions = {}
 
 
-if len(cars) == 0:
-    add_car()
+#if len(cars) == 0:
+   # add_car()
 
 
 def list_cars ():
@@ -92,7 +92,7 @@ def rent_a_car ():
         except ValueError:
             print(f"Please enter valid ID!")
 
-    day_price = int(cars[car_to_rent]['price'])
+    day_price = float(cars[car_to_rent]['price'])
 
     while True:
         try:
