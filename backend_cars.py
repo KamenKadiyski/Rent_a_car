@@ -5,7 +5,7 @@ with open("cars_data.json", "r") as file:
 def car_search(car_num):
     for car in cars.keys():
         if car_num in cars:
-            print(f'car with ID: {car_num}, {cars[car_num]['brand']} {cars[car_num]['model']} for BGN{cars[car_num]['price']} per day is {cars[car_num]['status']}')
+            print(f'car with ID: {car_num}, {cars[car_num]["brand"]} {cars[car_num]["model"]} for BGN{cars[car_num]["price"]} per day is {cars[car_num]["status"]}')
             break
         else:
             print(f'Car with ID {car_num} not exists!')

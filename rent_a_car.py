@@ -37,7 +37,7 @@ def list_cars ():
 
                     if isinstance(value, dict):
                         print(
-                            f'car with ID: {key}, {cars[key]['brand']} {cars[key]['model']} for {cars[key]['price']}lv. per day is {cars[key]['status']}')
+                            f'car with ID: {key}, {cars[key]["brand"]} {cars[key]["model"]} for {cars[key]["price"]}lv. per day is {cars[key]["status"]}')
                     else:
                         print(f'  {value}')
                 break
@@ -87,7 +87,7 @@ def rent_a_car ():
                 add_client(customer_who_rent)
                 break
             else:
-                print(f'Client with ID: {customer_who_rent}, {client[customer_who_rent]['name']} {client[customer_who_rent]['address']} is {client[customer_who_rent]['age']} old and status {client[customer_who_rent]['status']} driver')
+                print(f'Client with ID: {customer_who_rent}, {client[customer_who_rent]["name"]} {client[customer_who_rent]["address"]} is {client[customer_who_rent]["age"]} old and status {client[customer_who_rent]["status"]} driver')
                 break
         except ValueError:
             print(f"Please enter valid ID!")
