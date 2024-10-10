@@ -41,29 +41,14 @@ def list_cars ():
                     else:
                         print(f'  {value}')
                 break
-            else:
+            elif ans.isdigit():
                 car_search(ans)
-                if cars[ans]['status'] == 'Rented':
-                    print(f'The car already rented.')
-                    while True:
-                        try:
-                            ans1 = input(f'Do you want to rent other car? Y/N:').upper()
-                            if ans1 == 'Y' or ans1 == 'YES':
-
-                                #print(cars) #-да се активира ако има грешка за тестови данни
-                                break
-                            elif ans1 == 'N' or ans1 == 'NO':
-                                record = True
-                                print(f'Bye!')
-                                break
-                            else:
-                                print("Please enter valid choice Y/N!")
-                        except ValueError:
-                            print("Please enter valid choice Y/N!")
-
                 break
+
+            else:
+                print("Please enter valid choice!")
         except ValueError:
-            print(f"Please enter valid choice Y/N!")
+            print(f"Please enter valid choice!")
 
 
 def rent_a_car ():
