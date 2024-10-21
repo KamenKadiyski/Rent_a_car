@@ -1,7 +1,7 @@
 import json
 
 from backend_clients import client
-from backend_cars import add_car, car_del, car_detail_change, cars
+from backend_cars import add_car, car_del, car_detail_change, cars, car_search
 from rent_a_car import (list_cars, rent_a_car, transactions, return_car)
 
 
@@ -86,20 +86,21 @@ def admin_panel():
             elif option == "2":
                 print("Changing data for existing car functionality.")
                 car_id_to_be_changed = input("Please select for which car ID you want to make changes: ")
-                print("What do you want to change?")
-                print("1. Price")
-                print("2. Scrap car")
+                if car_search(car_id_to_be_changed):
+                    print("What do you want to change?")
+                    print("1. Price")
+                    print("2. Scrap car")
 
-                car_changes = input("Please select option from the list above (1-2)")
-                try:
-                    if car_changes == "1":
-                        car_detail_change(car_changes,car_id_to_be_changed)
-                    elif car_changes == "2":
-                        car_detail_change(car_changes,car_id_to_be_changed)
+                    car_changes = input("Please select option from the list above (1-2)")
+                    try:
+                        if car_changes == "1":
+                            car_detail_change(car_changes,car_id_to_be_changed)
+                        elif car_changes == "2":
+                            car_detail_change(car_changes,car_id_to_be_changed)
 
 
-                except ValueError:
-                    print("Invalid option, please try again.")
+                    except ValueError:
+                        print("Invalid option, please try again.")
 
                 # to complete
 

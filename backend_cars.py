@@ -2,14 +2,16 @@ import json
 with open("cars_data.json", "r") as file:
     cars = json.load(file)
 
-def car_search(car_num):
-    for car in cars.keys():
+def car_search(car_num )-> bool:
+    for car in cars.keys() :
         if car_num in cars:
             print(f'car with ID: {car_num}, {cars[car_num]["brand"]} {cars[car_num]["model"]} for BGN{cars[car_num]["price"]} per day is {cars[car_num]["status"]}')
-            break
+            return True
+            #break
         else:
             print(f'Car with ID {car_num} not exists!')
-            break
+            return False
+            #break
 
 def add_to_list(ids, brand, model, price, status):
     cars[ids] = {}
@@ -37,7 +39,7 @@ def add_car():
         while car_found:
             car_id = input(f'Insert car ID:')
             car_found = car_exists(cars, car_id)
-            if car_found == False:
+            if not car_found:
                 break
             else:
                 print(f'Car already exists! Try again!')

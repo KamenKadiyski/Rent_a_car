@@ -37,7 +37,7 @@ def list_cars ():
 
                     if isinstance(value, dict):
                         print(
-                            f'car with ID: {key}, {cars[key]["brand"]} {cars[key]["model"]} for {cars[key]["price"]}lv. per day is {cars[key]["status"]}')
+                            f'car with ID: {key}, {cars[key]["brand"]} {cars[key]["model"]} for BGN {cars[key]["price"]} per day is {cars[key]["status"]}')
                     else:
                         print(f'  {value}')
                 break
