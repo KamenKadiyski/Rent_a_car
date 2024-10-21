@@ -28,5 +28,11 @@
         "model": "CR-V",
         "price": "55.55",
         "status": "Rented"
+    },
+    "px60vtz": {
+        "brand": "ALfa Romeo",
+        "model": "Mito GrandTorismo",
+        "price": "20.50",
+        "status": "Available"
     }
 }

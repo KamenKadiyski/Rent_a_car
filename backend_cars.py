@@ -53,10 +53,12 @@ def add_car():
                 ans = input(f'Do You want to save the car\'s data? Y/N:').upper()
                 if ans == 'Y' or ans == 'YES':
                     add_to_list(car_id, car_brand, car_model, rent_price, car_status)
+                    print(f'The car has been added to the database!')
                     # print(cars) #-да се активира ако има грешка за тестови данни
                     break
                 elif ans == 'N' or ans == 'NO':
                     car_id = car_brand = car_model = rent_price = car_status = ''
+                    print(f'The car has not been added to the database!')
                     # print(cars) #-да се активира ако има грешка за тестови данни
                     break
                 else:
@@ -89,9 +91,11 @@ def car_del (car_id):
                 ans1 = input(f'Are you sure you want to delete this car? Y/N:').upper()
                 if ans1 == 'Y' or ans1 == 'YES':
                     del cars[car_id]
+                    print(f'The car has been deleted from the database!')
                     #print(cars) #-да се активира ако има грешка за тестови данни
                     break
                 elif ans1 == 'N' or ans1 == 'NO':
+                    print(f'The car has not been deleted from the database!')
                     # print(cars) #-да се активира ако има грешка за тестови данни
                     break
                 else:
@@ -112,9 +116,11 @@ def car_detail_change(car_changes,car_id):
                 ans1 = input(f'Are you sure you want to change the rental price? Y/N:').upper()
                 if ans1 == 'Y' or ans1 == 'YES':
                     cars[car_id]['price'] = str(new_price)
+                    print(f'The rental price of the car has been changed!')
                     # print(cars[car_id]) - #-да се активира ако има грешка за тестови данни
                     break
                 elif ans1 == 'N' or ans1 == 'NO':
+                    print(f'The rental price of the car has not been changed!')
                     # print(cars[car_id]) #-да се активира ако има грешка за тестови данни
                     break
                 else:
@@ -133,9 +139,11 @@ def car_detail_change(car_changes,car_id):
                     ans1 = input(f'Are you sure you want to scrap this car? Y/N:').upper()
                     if ans1 == 'Y' or ans1 == 'YES':
                         cars[car_id]['status'] = 'Scrapped'
+                        print(f'The car is scrapped!')
                         #print(cars[car_id]) #-да се активира ако има грешка за тестови данни
                         break
                     elif ans1 == 'N' or ans1 == 'NO':
+                        print(f'The car is not scrapped!')
                         #print(cars[car_id]) #- да се активира ако има грешка за тестови данни
                         break
                     else:
