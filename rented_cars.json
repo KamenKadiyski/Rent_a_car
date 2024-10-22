@@ -22,5 +22,13 @@
         "deposit": 800,
         "paid": 100.0,
         "status": "Closed"
+    },
+    "px60vtz": {
+        "client": "123",
+        "date": "2024-10-22",
+        "days": 5,
+        "deposit": 400.0,
+        "paid": 97.5,
+        "status": "Active"
     }
 }

@@ -4,7 +4,7 @@ from datetime import date
 with open("rented_cars.json", "r") as file:
     transactions = json.load(file)
 from backend_clients import client_search, add_client, client
-from backend_cars import cars, add_car, car_search
+from backend_cars import cars, car_search
 
 
 def transaction_to_list(ids, customer, dnes, days, deposit, paid, status):
@@ -51,118 +51,127 @@ def list_cars ():
             print(f"Please enter valid choice!")
 
 
-def rent_a_car ():
+def rent_a_car (car_id_rent):
     global car_deposit
     while True:
-        try:
+        # car_id_rent = input(f'Please enter the ID of the car you want to rent:')
+        # if not car_search(car_id_rent):
+        #   break
+        #   print(f'')
+        if cars[car_id_rent]['status'] == 'Rented':
+            print(f'The car is already rented! Try another car!')
+            break
+        else:
+            #car_search(car_id_rent)
+            #break
             while True:
-                car_to_rent = input(f'Please enter the ID of the car you want to rent:')
-                if cars[car_to_rent]['status'] == 'Rented':
-                    print(f'The car is already rented! Try another car!')
-                    continue
-                else:
-                    car_search(car_to_rent)
+                try:
+
+                    customer_who_rent = input(f'Please enter the ID of the customer who wants to rent the car:')
+                    # print(client_search(customer_who_rent))
+                    if client_search(customer_who_rent):
+                        print(f'Customer not exist. Please enter the customer details:')
+                        add_client(customer_who_rent)
+                        break
+                    else:
+                        print(
+                            f'Client with ID: {customer_who_rent}, {client[customer_who_rent]["name"]} {client[customer_who_rent]["address"]} is {client[customer_who_rent]["age"]} old and status {client[customer_who_rent]["status"]} driver')
+                        break
+                except ValueError:
+                    print(f"Please enter valid ID!")
+
+            day_price = float(cars[car_id_rent]['price'])
+
+            while True:
+                try:
+                    days_to_rent = int(input(f'Please enter how many days you want to rent the car:'))
                     break
+                except ValueError:
+                    print(f"Please enter integer number!")
+            rent_to_pay = days_to_rent * day_price
+            if client[customer_who_rent]['status'] != 'Normal':
+                car_deposit += car_deposit * 0.3
+            while True:
+                try:
+                    ins_confirm = input(
+                        f'Would you like insurance covering damages incurred during the rental:Y/N?').upper()
+                    if ins_confirm == 'Y' or ins_confirm == 'N':
+                        break
+                    else:
+                        print(f'Please enter valid choice Y/N!')
+                except ValueError:
+                    print(f'Please enter valid choice Y/N!')
+            if ins_confirm == 'Y':
+                car_deposit = car_deposit / 2
+            while True:
+                try:
+                    out_confirm = input(
+                        f'Do you plan to drive the rental car outside the country during the rental period? Y/N:').upper()
+                    if out_confirm == 'Y':
+                        rent_to_pay += 160
+                        break
+                    elif out_confirm == 'N':
+                        print(f'If you leave the country with the rented car, illegally, you owe a fine of BGN 600!')
+                        break
+                    else:
+                        print(f'Please enter valid choice Y/N!')
+                except ValueError:
+                    print(f'Please enter valid choice Y/N!')
+            trans_id = car_id_rent
+            while True:
+                try:
+                    outside_eu = input(f'Is your driving license issued by a non-EU country? Y/N').upper()
+                    if outside_eu == 'Y' or outside_eu == 'YES':
+                        print(
+                            f'You have a permit to drive for up to 90 days on the territory of the country,\nstarting from the date of your entry into the country.')
+                        break
+                    elif outside_eu == 'N' or outside_eu == 'NO':
+                        break
+                    else:
+                        print(f'Please enter valid choice Y/N!')
+                except ValueError:
+                    print(f'Please enter valid choice Y/N!')
+            while True:
+                try:
+                    prepayment = float(input(f'Please enter the amount of advance payment. Enter 0 (zero) if none:'))
+                    rent_to_pay -= prepayment
+                    break
+                except ValueError:
+                    print(f"Please enter integer number!")
 
+            print(
+                f'Rent Amount:BGN {rent_to_pay:.2f} Deposit:BGN {car_deposit:.2f} Total Amount to Pay:BGN {(rent_to_pay + car_deposit):.2f}')
+            while True:
+                try:
+                    ans = input(f'Do You want to save the transaction\'s data? Y/N:').upper()
+                    if ans == 'Y' or ans == 'YES':
+                        transaction_status = 'Active'
+                        day_of_rent = str(date.today())
+                        transaction_to_list(trans_id, customer_who_rent, day_of_rent, days_to_rent, car_deposit,
+                                            rent_to_pay,
+                                            transaction_status)
+                        cars[car_id_rent]['status'] = 'Rented'
+                        print(f'Car {car_id_rent} has been successfully hired by {client[customer_who_rent]["name"]}!')
+                        trans_id = days_id_rent = car_deposit = rent_to_pay = transaction_status = ''
+                        customer_who_rent = car_to_rent = day_of_rent = ''
+                        # print(transactions) #-да се активира ако има грешка за тестови данни
+                        # print((cars[car_to_rent])) #-да се активира ако има грешка за тестови данни
 
-            customer_who_rent = input(f'Please enter the ID of the customer who wants to rent the car:')
-            #print(client_search(customer_who_rent))
-            if client_search(customer_who_rent):
-                print(f'Customer not exist. Please enter the customer details:')
-                add_client(customer_who_rent)
-                break
-            else:
-                print(f'Client with ID: {customer_who_rent}, {client[customer_who_rent]["name"]} {client[customer_who_rent]["address"]} is {client[customer_who_rent]["age"]} old and status {client[customer_who_rent]["status"]} driver')
-                break
-        except ValueError:
-            print(f"Please enter valid ID!")
-
-    day_price = float(cars[car_to_rent]['price'])
-
-    while True:
-        try:
-            days_to_rent = int(input(f'Please enter how many days you want to rent the car:'))
+                        break
+                    elif ans == 'N' or ans == 'NO':
+                        trans_id = days_to_rent = car_deposit = rent_to_pay = transaction_status = ''
+                        customer_who_rent = car_to_rent = day_of_rent = ''
+                        # print(transactions) #-да се активира ако има грешка за тестови данни
+                        break
+                    else:
+                        print(f'Please enter valid choice Y/N!')
+                except ValueError:
+                    print(f'Please enter valid choice Y/N!')
             break
-        except ValueError:
-            print(f"Please enter integer number!")
-    rent_to_pay = days_to_rent * day_price
-    if client[customer_who_rent]['status'] != 'Normal':
-        car_deposit += car_deposit * 0.3
-    while True:
-        try:
-            ins_confirm = input(f'Would you like insurance covering damages incurred during the rental:Y/N?').upper()
-            if ins_confirm == 'Y' or ins_confirm == 'N':
-                break
-            else:
-                print(f'Please enter valid choice Y/N!')
-        except ValueError:
-            print(f'Please enter valid choice Y/N!')
-    if ins_confirm == 'Y':
-        car_deposit = car_deposit  / 2
-    while True:
-        try:
-            out_confirm = input(
-                f'Do you plan to drive the rental car outside the country during the rental period? Y/N:').upper()
-            if out_confirm == 'Y':
-                rent_to_pay += 160
-                break
-            elif out_confirm == 'N':
-                print(f'If you leave the country with the rented car, illegally, you owe a fine of BGN 600!')
-                break
-            else:
-                print(f'Please enter valid choice Y/N!')
-        except ValueError:
-            print(f'Please enter valid choice Y/N!')
-    trans_id = car_to_rent
-    while True:
-        try:
-            outside_eu = input(f'Is your driving license issued by a non-EU country? Y/N').upper()
-            if outside_eu == 'Y' or outside_eu == 'YES':
-                print(
-                    f'You have a permit to drive for up to 90 days on the territory of the country,\nstarting from the date of your entry into the country.')
-                break
-            elif outside_eu == 'N' or outside_eu == 'NO':
-                break
-            else:
-                print(f'Please enter valid choice Y/N!')
-        except ValueError:
-            print(f'Please enter valid choice Y/N!')
-    while True:
-        try:
-            prepayment = float(input(f'Please enter the amount of advance payment. Enter 0 (zero) if none:'))
-            rent_to_pay -= prepayment
-            break
-        except ValueError:
-            print(f"Please enter integer number!")
-
-    print(
-        f'Rent Amount:BGN {rent_to_pay:.2f} Deposit:BGN {car_deposit:.2f} Total Amount to Pay:BGN {(rent_to_pay + car_deposit):.2f}')
-    while True:
-        try:
-            ans = input(f'Do You want to save the transaction\'s data? Y/N:').upper()
-            if ans == 'Y' or ans == 'YES':
-                transaction_status = 'Active'
-                day_of_rent = str(date.today())
-                transaction_to_list(trans_id, customer_who_rent,day_of_rent, days_to_rent, car_deposit, rent_to_pay, transaction_status)
-                cars[car_to_rent]['status'] = 'Rented'
-                trans_id = days_to_rent = car_deposit = rent_to_pay = transaction_status = ''
-                customer_who_rent = car_to_rent = day_of_rent = ''
-                #print(transactions) #-да се активира ако има грешка за тестови данни
-                #print((cars[car_to_rent])) #-да се активира ако има грешка за тестови данни
-                break
-            elif ans == 'N' or ans == 'NO':
-                trans_id = days_to_rent = car_deposit = rent_to_pay = transaction_status = ''
-                customer_who_rent = car_to_rent = day_of_rent = ''
-                #print(transactions) #-да се активира ако има грешка за тестови данни
-                break
-            else:
-                print(f'Please enter valid choice Y/N!')
-        except ValueError:
-            print(f'Please enter valid choice Y/N!')
-
 
 
 def return_car(car_to_return):
+    global customer_stat
     while True:
         try:
             #car_to_return = input(f"Please enter the ID of the car you are returning: ")
@@ -247,9 +256,12 @@ def return_car(car_to_return):
                         ans = input(f'Do You want to save the transaction\'s data? Y/N: ').upper()
                         if ans == 'Y' or ans == 'YES':
                             cars[car_to_return]['status'] = 'Available'
+                            cust_id = transactions[car_to_return]["client"]
                             if damages == 'Y' or damages == 'YES':
                                 client[cust_id]["status"] = customer_stat
                             transactions[car_to_return]["status"] = 'Closed'
+                            print(
+                                f'Car {car_to_return} has been successfully returned by {client[cust_id]["name"]}!')
                             # print(transactions[car_to_return])  # -да се активира ако има грешка за тестови данни
                             # print((cars[car_to_return]))# -да се активира ако има грешка за тестови данни
                             # print(client[cust_id])

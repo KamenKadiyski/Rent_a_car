@@ -61,11 +61,20 @@ def client_panel():
                 display_cars()
             elif option == "2":
                 print("Renting a car functionality.")
-                rent_a_car()
+                #while not car_search:
+                car_for_rent  = input(f'Please enter the ID of the car you want to rent:')
+                if not car_search(car_for_rent):
+                    #print(f'The car does not exist in the database!')
+                    continue
+                else:
+                    rent_a_car(car_for_rent)
             elif option == "3":
                 print("Returning a car functionality.")
                 return_car_id = input("Please enter car ID: ")
-                return_car(return_car_id)
+                if not car_search(return_car_id):
+                    continue
+                else:
+                    return_car(return_car_id)
                 # to add functionality here
             elif option == "4":
                 break
