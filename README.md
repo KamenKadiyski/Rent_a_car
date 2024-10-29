@@ -29,8 +29,21 @@ It includes the following panels and their features:
         When returning a car, check if the car is returned with a full tank and if not - charge a fee. * Price per liter of fuel BGN 2.90/l + BGN 30 admin fee. Electricity - BGN 1/kWh + BGN 30 admin fee.
         Fee for being late for more than an hour - one rental day. Each subsequent day started is charged with a full rental day*
 
-5. Exiting the system - when exiting the system, it is required to refresh and close all files opened during the work with the system.*
+3. Exiting the system - when exiting the system, it is required to refresh and close all files opened during the work with the system.*
 
+**backend_clients.py** - Included in the file are functions for searching for a customer and adding a new customer, adding the data to a dictionary.
+
+**backend_cars.py** - Included in the file are functions to search for a car and add a new car, delete an existing car and change some data, add the data to a dictionary.
+
+**rent_a_car.py** - Тhe file includes functions for renting a car, returning a car, displaying a list of cars
+
+**frontend.py** - Тhe file includes functions for displaying menus for the various functionalities of the system.
+
+**cars_data.json** - contains the car data
+
+**clients_data.json** - contains the customers data
+
+**transactions.json** - contains data on car rental transactions
 
 
 QA guidelines:
