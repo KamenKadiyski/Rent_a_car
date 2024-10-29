@@ -39,12 +39,24 @@ def main_menu_admin():
 
 def exit_menu():
     print("Thank you for using RentACar Turtle Team! \nHave a great day!")
-    with open("rented_cars.json", "w") as file:
-        json.dump(transactions, file, indent=4)
-    with open("cars_data.json", "w") as file:
-        json.dump(cars, file, indent=4)
-    with open("clients_data.json", "w") as file:
-        json.dump(client, file, indent=4)
+    try:
+        with open("clients.json", "w", encoding="utf-8") as f1:
+            json.dump(client, f1, ensure_ascii=False, indent=4)
+        with open("equipment.json", "w", encoding="utf-8") as f2:
+            json.dump(cars, f2, ensure_ascii=False, indent=4)
+        with open("transactions.json", "w", encoding="utf-8") as f3:
+            json.dump(transactions, f3, ensure_ascii=False, indent=4)
+    except Exception as e:
+        print(f"Error: {e}")
+
+       # with open("rented_cars.json", "w") as f1:
+            #json.dump(transactions, f1, indent=4)
+        #with open("cars_data.json", "w") as f2:
+          #  json.dump(cars, f2, indent=4)
+        #with open("clients_data.json", "w",encoding= "utf-8") as f3:
+          #  json.dump(client, f3,ensure_ascii= False ,indent=4)
+    #except Exception as e:
+        #print(f"Error: {e}")
     return None
 
 
