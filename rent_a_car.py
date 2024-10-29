@@ -1,6 +1,8 @@
 import json
 from datetime import date
 
+from transaction_id_list import id_generate
+
 with open("transactions.json", "r") as file:
     transactions = json.load(file)
 from backend_clients import client_search, add_client, client
@@ -117,7 +119,7 @@ def rent_a_car (car_id_rent):
                         print(f'Please enter valid choice Y/N!')
                 except ValueError:
                     print(f'Please enter valid choice Y/N!')
-            trans_id = car_id_rent
+            trans_id = id_generate(car_id_rent,customer_who_rent)
             while True:
                 try:
                     outside_eu = input(f'Is your driving license issued by a non-EU country? Y/N').upper()
