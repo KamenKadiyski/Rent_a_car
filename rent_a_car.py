@@ -1,7 +1,7 @@
 import json
 from datetime import date
 
-with open("rented_cars.json", "r") as file:
+with open("transactions.json", "r") as file:
     transactions = json.load(file)
 from backend_clients import client_search, add_client, client
 from backend_cars import cars, car_search
