@@ -40,9 +40,9 @@ def main_menu_admin():
 def exit_menu():
     print("Thank you for using RentACar Turtle Team! \nHave a great day!")
     try:
-        with open("clients.json", "w", encoding="utf-8") as f1:
+        with open("clients_data.json", "w", encoding="utf-8") as f1:
             json.dump(client, f1, ensure_ascii=False, indent=4)
-        with open("equipment.json", "w", encoding="utf-8") as f2:
+        with open("cars_data.json", "w", encoding="utf-8") as f2:
             json.dump(cars, f2, ensure_ascii=False, indent=4)
         with open("transactions.json", "w", encoding="utf-8") as f3:
             json.dump(transactions, f3, ensure_ascii=False, indent=4)
